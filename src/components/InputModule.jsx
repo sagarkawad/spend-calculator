@@ -19,6 +19,10 @@ export default function InputModule() {
     setAmount("");
   }
 
+  function onDoneHandler() {
+    setAmount("");
+  }
+
   function onChangeHandler(e) {
     setAmount(e.target.value);
 
@@ -59,7 +63,9 @@ export default function InputModule() {
             onChange={onChangeHandler}
             value={amount}
           />
-          <button className="add">Done</button>
+          <button className="add" onClick={onDoneHandler}>
+            Done
+          </button>
         </div>
       </section>
       <ResultTable resultData={resultTable} />
