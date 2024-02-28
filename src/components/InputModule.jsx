@@ -16,15 +16,19 @@ export default function InputModule() {
   function onClickHandler(e) {
     item = e.target.value;
     console.log(item);
-    setAmount("");
+    setAmount(() => {
+      return "";
+    });
   }
 
   function onDoneHandler() {
-    setAmount("");
+    setAmount(() => {
+      return "";
+    });
   }
 
   function onChangeHandler(e) {
-    setAmount(e.target.value);
+    setAmount(() => e.target.value);
 
     setResultTable((prevResultTable) => {
       let prevResultTableDeep = { ...prevResultTable };
