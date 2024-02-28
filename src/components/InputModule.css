@@ -4,13 +4,15 @@
 
 } */
 
-.add-section {
+.add-section,
+.add-category,
+.dropdown {
   display: flex;
   justify-content: center;
   height: 20px;
   font-size: 8px;
 }
 
-.add {
+button {
   border-radius: 0;
 }

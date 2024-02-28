@@ -5,15 +5,62 @@ import { useState } from "react";
 import ResultTable from "./ResultTable";
 
 //data
-let items = ["Food", "Entertainment", "Essentials", "Other"];
-let item = items[0];
+// let items = ["Food", "Entertainment", "Essentials", "Other"];
+// let item = items[0];
+
+let item;
 
 export default function InputModule() {
   //useState
   const [resultTable, setResultTable] = useState({});
   const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
+  const [items, setItems] = useState(["Food", "Entertainment", "Essentials"]);
 
-  function onClickHandler(e) {
+  console.log("resulttable = " + resultTable);
+
+  function onRemoveHandler() {
+    setItems((prevItems) => {
+      const elementToRemove = item;
+
+      const newArray = prevItems.filter(
+        (arrayItem) => arrayItem !== elementToRemove
+      );
+
+      console.log(newArray);
+      return newArray; // Output: [1, 2, 4, 5]
+    });
+
+    // Remove the 'age' key-value pair from the object
+    setResultTable((prevResultTable) => {
+      let obj = { ...prevResultTable };
+      delete obj[item];
+      return obj;
+    });
+
+    item = items[0];
+
+    setAmount("");
+  }
+
+  function setCategoryHandler(e) {
+    setCategory(e.target.value);
+  }
+
+  function addCategoryHandler() {
+    const elementToAdd = category;
+
+    setItems((prevItems) => {
+      let data = [...prevItems];
+      // Calculate the index of the second last position
+      data.append(category);
+      return data;
+    });
+
+    setCategory("");
+  }
+
+  function onChangeHandlerOptions(e) {
     item = e.target.value;
     console.log(item);
     setAmount(() => {
@@ -33,7 +80,7 @@ export default function InputModule() {
     setResultTable((prevResultTable) => {
       let prevResultTableDeep = { ...prevResultTable };
       console.log("item " + item);
-      prevResultTableDeep[item] = Number(e.target.value);
+      prevResultTableDeep[item || items[0]] = Number(e.target.value);
       console.log(prevResultTableDeep);
       return prevResultTableDeep;
     });
@@ -49,7 +96,7 @@ export default function InputModule() {
             id="category"
             name="category"
             className="category"
-            onChange={onClickHandler}
+            onChange={onChangeHandlerOptions}
           >
             {items.map((el) => {
               return (
@@ -59,6 +106,7 @@ export default function InputModule() {
               );
             })}
           </select>
+          <button onClick={onRemoveHandler}>Remove</button>
         </div>
         <div className="add-section">
           <input
@@ -70,6 +118,15 @@ export default function InputModule() {
           <button className="add" onClick={onDoneHandler}>
             Done
           </button>
+        </div>
+        <div className="add-category">
+          <input
+            type="text"
+            placeholder="add a category"
+            onChange={setCategoryHandler}
+            value={category}
+          />
+          <button onClick={addCategoryHandler}>Add</button>
         </div>
       </section>
       <ResultTable resultData={resultTable} />
