@@ -1,0 +1,16 @@
+/* .user-ip {
+  display: flex;
+  flex-direction: column;
+
+} */
+
+.add-section {
+  display: flex;
+  justify-content: center;
+  height: 20px;
+  font-size: 8px;
+}
+
+.add {
+  border-radius: 0;
+}
