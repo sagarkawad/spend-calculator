@@ -6,15 +6,15 @@ import ResultTable from "./ResultTable";
 
 //data
 let items = ["Food", "Entertainment", "Essentials", "Other"];
+let item = items[0];
 
 export default function InputModule() {
   //useState
   const [resultTable, setResultTable] = useState({});
   const [amount, setAmount] = useState("");
-  const [item, setItem] = useState(items[0]);
 
   function onClickHandler(e) {
-    setItem(e.target.value);
+    item = e.target.value;
     console.log(item);
     setAmount(() => {
       return "";
