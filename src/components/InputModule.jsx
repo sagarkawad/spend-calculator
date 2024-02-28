@@ -49,7 +49,7 @@ export default function InputModule() {
             id="category"
             name="category"
             className="category"
-            onClick={onClickHandler}
+            onChange={onClickHandler}
           >
             {items.map((el) => {
               return (
