@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <h1>Spend Calculator</h1>
+      <h1>Expense Manager</h1>
       <InputModule />
     </>
   );
