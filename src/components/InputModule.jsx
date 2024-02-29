@@ -8,7 +8,7 @@ import ResultTable from "./ResultTable";
 // let items = ["Food", "Entertainment", "Essentials", "Other"];
 // let item = items[0];
 
-let item;
+// let item;
 
 export default function InputModule() {
   //useState
@@ -16,6 +16,7 @@ export default function InputModule() {
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
   const [items, setItems] = useState(["Food", "Entertainment", "Essentials"]);
+  const [item, setItem] = useState(items[0]);
 
   console.log("resulttable = " + resultTable);
 
@@ -28,17 +29,18 @@ export default function InputModule() {
       );
 
       console.log(newArray);
+
+      // Remove the 'age' key-value pair from the object
+      setResultTable((prevResultTable) => {
+        let obj = { ...prevResultTable };
+        delete obj[item];
+        return obj;
+      });
+
+      setItem(newArray[0]);
+
       return newArray; // Output: [1, 2, 4, 5]
     });
-
-    // Remove the 'age' key-value pair from the object
-    setResultTable((prevResultTable) => {
-      let obj = { ...prevResultTable };
-      delete obj[item];
-      return obj;
-    });
-
-    item = items[0];
 
     setAmount("");
   }
@@ -53,7 +55,7 @@ export default function InputModule() {
     setItems((prevItems) => {
       let data = [...prevItems];
       // Calculate the index of the second last position
-      data.append(category);
+      data.push(category);
       return data;
     });
 
@@ -61,7 +63,7 @@ export default function InputModule() {
   }
 
   function onChangeHandlerOptions(e) {
-    item = e.target.value;
+    setItem(e.target.value);
     console.log(item);
     setAmount(() => {
       return "";
