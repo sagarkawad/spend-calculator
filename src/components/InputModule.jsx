@@ -50,14 +50,14 @@ export default function InputModule() {
   }
 
   function addCategoryHandler() {
-    const elementToAdd = category;
-
-    setItems((prevItems) => {
-      let data = [...prevItems];
-      // Calculate the index of the second last position
-      data.push(category);
-      return data;
-    });
+    if (!items.includes(category) && category.trim().length > 0) {
+      setItems((prevItems) => {
+        let data = [...prevItems];
+        // Calculate the index of the second last position
+        data.push(category);
+        return data;
+      });
+    }
 
     setCategory("");
   }
